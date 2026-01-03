@@ -3,720 +3,980 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NASA - National Aeronautics and Space Administration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/v4-shims.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B3D91',
+                        secondary: '#FC3D21',
+                        nasaBlue: '#0B3D91',
+                        nasaRed: '#FC3D21',
+                        nasaGray: '#8A8D91',
+                        space: '#00001A',
+                        earth: '#0074D9'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .bg-gradient-space {
+                background: linear-gradient(135deg, #00001A 0%, #0B3D91 50%, #00001A 100%);
+            }
+            .bg-gradient-earth {
+                background: linear-gradient(135deg, #0074D9 0%, #7FDBFF 100%);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+        }
+    </style>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
         }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #FC3D21, transparent);
         }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
+        
+        .mission-card {
             transition: all 0.3s ease;
-            padding: 0.5rem 0;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link {
             position: relative;
         }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
+        
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent);
+            bottom: -2px;
+            left: 0;
+            background-color: #FC3D21;
             transition: width 0.3s ease;
         }
-
-        nav ul li a:hover::after {
+        
+        .nav-link:hover::after {
             width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
+<body class="font-inter bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="https://aka.doubaocdn.com/s/DZDG1xkCyn" alt="NASA Logo" class="h-10 w-auto">
+                    <span class="ml-3 text-xl font-bold text-white hidden sm:inline-block">NASA</span>
                 </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">About</a>
+                        <a href="#missions" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">Missions</a>
+                        <a href="#achievements" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">Achievements</a>
+                        <a href="#future" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">Future</a>
+                        <a href="#science" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">Science</a>
+                        <a href="#commercial" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white hover:text-nasaRed transition-colors">Commercial</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-white hover:text-nasaRed" id="mobile-menu-button">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </header>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-effect">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">About</a>
+                <a href="#missions" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">Missions</a>
+                <a href="#achievements" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">Achievements</a>
+                <a href="#future" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">Future</a>
+                <a href="#science" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">Science</a>
+                <a href="#commercial" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-nasaRed transition-colors">Commercial</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-space"></div>
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        
+        <!-- Animated stars background -->
+        <div class="absolute inset-0" id="stars"></div>
+        
+        <div class="relative z-10 text-center px-4">
+            <img src="https://aka.doubaocdn.com/s/DZDG1xkCyn" alt="NASA Logo" class="w-48 md:w-64 lg:w-80 mx-auto mb-8 animate-float">
+            <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-white mb-6 text-shadow">
+                National Aeronautics and Space Administration
+            </h1>
+            <p class="text-[clamp(1rem,2.5vw,1.5rem)] text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+                Exploring the secrets of the universe for the benefit of all. 
+                Investigating the unknown in air and space, innovating for humanity, 
+                and inspiring the world through discovery.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#about" class="bg-nasaRed hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                    Explore NASA
+                </a>
+                <a href="#missions" class="bg-transparent border-2 border-white hover:border-nasaRed text-white hover:text-nasaRed font-bold py-3 px-8 rounded-full transition-all duration-300">
+                    Our Missions
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fa fa-chevron-down text-white text-2xl"></i>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+    <!-- About NASA Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 mb-4">About NASA</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Since 1958, NASA has been leading America's civilian space program and pioneering discoveries that benefit humanity.
+                </p>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-nasaBlue p-3 rounded-full mr-4">
+                                <i class="fa fa-rocket text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Our Mission</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            NASA's mission is to drive advances in science, technology, aeronautics, and space exploration to enhance knowledge, 
+                            education, innovation, economic vitality, and stewardship of Earth.
+                        </p>
                     </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
+                    
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-nasaRed p-3 rounded-full mr-4">
+                                <i class="fa fa-history text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Our History</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Established on October 1, 1958, NASA succeeded the National Advisory Committee for Aeronautics (NACA). 
+                            Since then, NASA has led most American space exploration, including Project Apollo, 
+                            the Space Shuttle program, and the International Space Station.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-earth p-3 rounded-full mr-4">
+                                <i class="fa fa-globe text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Our Vision</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            To discover and expand knowledge for the benefit of humanity. 
+                            We will continue to push the boundaries of exploration and innovation 
+                            to understand our planet, solar system, and the universe beyond.
+                        </p>
                     </div>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-nasaBlue to-space rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/ko9y1xkCyn" alt="International Space Station" class="w-full h-auto rounded-xl">
                     </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-nasaBlue mb-2">65+</div>
+                            <div class="text-sm text-gray-600">Years of Exploration</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <!-- Missions Section -->
+    <section id="missions" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 mb-4">Our Missions</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    NASA conducts missions across aeronautics, human spaceflight, science, and technology development.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Science Missions -->
+                <div class="mission-card bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://aka.doubaocdn.com/s/U1Hr1xkCyn" alt="James Webb Space Telescope" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 p-2 rounded-full mr-3">
+                                <i class="fa fa-eye text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Science Missions</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Exploring the universe, our solar system, and our home planet through advanced telescopes and satellites.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                James Webb Space Telescope
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Mars Exploration Program
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Earth Science Missions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Human Missions -->
+                <div class="mission-card bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://aka.doubaocdn.com/s/5hji1xkCyn" alt="Space Shuttle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-nasaBlue p-2 rounded-full mr-3">
+                                <i class="fa fa-user text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Human Missions</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Sending astronauts to space to conduct research, maintain the International Space Station, and explore beyond.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                International Space Station
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Artemis Program
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Commercial Crew Program
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Aeronautics Missions -->
+                <div class="mission-card bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://aka.doubaocdn.com/s/tEUD1xkCyn" alt="Spacecraft in Space" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-nasaRed p-2 rounded-full mr-3">
+                                <i class="fa fa-plane text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900">Aeronautics Missions</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Pioneering new flight technologies that improve our ability to explore and have practical applications on Earth.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Quiet Supersonic Technology
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Advanced Air Mobility
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                                Sustainable Aviation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 mb-4">Major Achievements</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Decades of groundbreaking discoveries that have expanded humanity's understanding of the universe.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Apollo Moon Landings</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        In July 1969, NASA astronauts made humanity's first crewed lunar landing with Apollo 11. 
+                        Over the next three years, five more Moon landings were accomplished, 
+                        with 12 astronauts walking on the lunar surface.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">1969-1972</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">12 Astronauts</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">6 Missions</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-gray-700 to-black rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/PWhj1xkCyn" alt="Kennedy Space Center" class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -top-4 -left-4 bg-nasaBlue text-white p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold mb-1">1969</div>
+                            <div class="text-xs">First Moon Landing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="relative order-2 md:order-1">
+                    <div class="bg-gradient-to-br from-blue-600 to-purple-800 rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/ko9y1xkCyn" alt="International Space Station" class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-nasaRed text-white p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold mb-1">25+</div>
+                            <div class="text-xs">Years in Orbit</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">International Space Station</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Since 2000, rotational crews have been living continuously aboard the International Space Station. 
+                        Located about 250 miles above Earth, it serves as a full-time microgravity laboratory 
+                        conducting experiments only possible in space.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">25+ Countries</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">24/7 Operations</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">1000+ Experiments</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">James Webb Space Telescope</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        The James Webb Space Telescope is an orbiting infrared observatory that looks back to the beginning of time, 
+                        hunting for the formation of the first galaxies and exploring dust clouds where stars and planetary systems form.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">2021 Launch</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">Infrared Vision</span>
+                        <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium">Deep Space</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/U1Hr1xkCyn" alt="James Webb Space Telescope" class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -top-4 -left-4 bg-purple-600 text-white p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold mb-1">1.5M km</div>
+                            <div class="text-xs">From Earth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Plans Section -->
+    <section id="future" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold mb-4">Future Exploration</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    NASA's ambitious plans to return to the Moon, explore Mars, and push the boundaries of space exploration.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Artemis Program</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        The Artemis program will send humans to the Moon for long-term scientific exploration and discovery. 
+                        Artemis II will be the first flight test with astronauts, and Artemis III will mark humanity's return 
+                        to the lunar surface, including the first woman and first person of color to walk on the Moon.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-nasaBlue p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-rocket text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Artemis II (2025)</h4>
+                                <p class="text-sm text-gray-400">First crewed flight test around the Moon</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-nasaRed p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-moon-o text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Artemis III (2026)</h4>
+                                <p class="text-sm text-gray-400">Return to lunar surface with astronauts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-earth p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-globe text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Gateway Lunar Station</h4>
+                                <p class="text-sm text-gray-400">Orbiting outpost for sustainable lunar exploration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-gray-800 to-black rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/6SYK1xkCyn" alt="Space Launch System" class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white text-nasaBlue p-6 rounded-lg shadow-xl">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-2">2025+</div>
+                            <div class="text-sm font-medium">Return to the Moon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative order-2 md:order-1">
+                    <div class="bg-gradient-to-br from-red-900 to-orange-900 rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/FqmA1xkCyn" alt="Mars Rover" class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -top-6 -left-6 bg-red-600 text-white p-6 rounded-lg shadow-xl">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-2">Mars</div>
+                            <div class="text-sm font-medium">Next Giant Leap</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold mb-6">Mars Exploration</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Living and working in low Earth orbit and at the Moon will help NASA prepare for the next giant leap: 
+                        sending humans to Mars. The ESCAPADE mission will study Mars' magnetic environment and atmospheric escape, 
+                        helping us better understand the planet's climate history.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-robot text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">ESCAPADE Mission (2025)</h4>
+                                <p class="text-sm text-gray-400">Study Mars' magnetic environment</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-600 p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Human Missions</h4>
+                                <p class="text-sm text-gray-400">Preparing for crewed Mars missions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-600 p-2 rounded-full mr-4 mt-1">
+                                <i class="fa fa-flask text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Scientific Research</h4>
+                                <p class="text-sm text-gray-400">Understanding Mars' climate history</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section id="science" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 mb-4">Science & Research</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    NASA's scientific research spans Earth science, heliophysics, planetary science, and astrophysics.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Earth Science -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-earth relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa fa-globe text-white text-6xl animate-pulse-slow"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Earth Science</h3>
+                        <p class="text-gray-600 mb-4">
+                            Studying our home planet's climate, weather, and environmental changes from space.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Climate Change Research
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Weather Forecasting
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Environmental Monitoring
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Planetary Science -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-red-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa fa-moon-o text-white text-6xl animate-pulse-slow"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Planetary Science</h3>
+                        <p class="text-gray-600 mb-4">
+                            Exploring planets, moons, asteroids, and comets in our solar system.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Mars Exploration
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Outer Planets Missions
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Asteroid Studies
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Astrophysics -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="h-48 bg-purple-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa fa-star text-white text-6xl animate-pulse-slow"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Astrophysics</h3>
+                        <p class="text-gray-600 mb-4">
+                            Investigating the universe beyond our solar system, from stars to galaxies.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                James Webb Telescope
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Exoplanet Discoveries
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check text-green-500 mr-2"></i>
+                                Dark Energy Studies
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Climate Change Section -->
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Climate Change Research</h3>
+                <p class="text-gray-600 leading-relaxed mb-8 text-center max-w-4xl mx-auto">
+                    From its unique vantage point in space, NASA collects critical long-term observations of our changing planet, 
+                    providing vital data to understand and address climate change.
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <div class="text-3xl font-bold text-nasaBlue mb-2">430</div>
+                        <div class="text-sm text-gray-600">CO₂ ppm (highest in 650k years)</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <div class="text-3xl font-bold text-nasaRed mb-2">1.5°C</div>
+                        <div class="text-sm text-gray-600">Global Temperature Rise</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <div class="text-3xl font-bold text-earth mb-2">3.6"</div>
+                        <div class="text-sm text-gray-600">Sea Level Rise (1993-2025)</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 text-center shadow">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">402B</div>
+                        <div class="text-sm text-gray-600">Tons of Ice Lost Annually</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commercial Space Section -->
+    <section id="commercial" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 mb-4">Commercial Space Partnerships</h2>
+                <div class="section-divider w-32 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    NASA is enabling commercial industry to build, own, and operate space systems through public-private partnerships.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Commercial Crew Program</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        The Commercial Crew Program facilitates development of a U.S. commercial crew space transportation capability 
+                        with the goal of achieving safe, reliable, and cost-effective access to and from the International Space Station.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 p-2 rounded-full mr-4">
+                                <i class="fa fa-rocket text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">SpaceX Crew Dragon</h4>
+                                <p class="text-sm text-gray-600">Certified for crew missions since 2020</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gray-600 p-2 rounded-full mr-4">
+                                <i class="fa fa-plane text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Boeing Starliner</h4>
+                                <p class="text-sm text-gray-600">In development for crew transportation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://aka.doubaocdn.com/s/5hji1xkCyn" alt="Space Shuttle" class="w-full h-auto rounded-xl">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Commercial Lunar Payload Services -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-800 relative">
+                        <img src="https://aka.doubaocdn.com/s/HtMF1xkCyn" alt="Mars Rover" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="text-xl font-bold">Commercial Lunar Services</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Delivering science and technology to the lunar surface through commercial partnerships.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Multiple Companies</span>
+                            <i class="fa fa-moon-o text-nasaGray"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Human Landing Systems -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-800 relative">
+                        <img src="https://aka.doubaocdn.com/s/6SYK1xkCyn" alt="Space Launch System" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="text-xl font-bold">Human Landing Systems</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Building systems to carry Artemis astronauts to the lunar surface.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">SpaceX & Blue Origin</span>
+                            <i class="fa fa-users text-nasaGray"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Commercial Space Stations -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-800 relative">
+                        <img src="https://aka.doubaocdn.com/s/ko9y1xkCyn" alt="International Space Station" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="text-xl font-bold">Commercial Space Stations</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Transitioning from ISS to commercial low Earth orbit destinations.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Future LEO Ecosystem</span>
+                            <i class="fa fa-building text-nasaGray"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <footer class="bg-space text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <img src="https://aka.doubaocdn.com/s/DZDG1xkCyn" alt="NASA Logo" class="h-12 w-auto mb-6">
+                    <p class="text-gray-400 leading-relaxed">
+                        Exploring the secrets of the universe for the benefit of all.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Missions</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Artemis Program</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Mars Exploration</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">James Webb Telescope</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">International Space Station</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Science</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Earth Science</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Planetary Science</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Astrophysics</a></li>
+                        <li><a href="#" class="hover:text-nasaRed transition-colors">Heliophysics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="bg-gray-800 hover:bg-nasaBlue p-3 rounded-full transition-colors">
+                            <i class="fa fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-nasaBlue p-3 rounded-full transition-colors">
+                            <i class="fa fa-facebook text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-nasaBlue p-3 rounded-full transition-colors">
+                            <i class="fa fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-nasaBlue p-3 rounded-full transition-colors">
+                            <i class="fa fa-youtube text-white"></i>
+                        </a>
                     </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                    <p class="text-gray-400 text-sm">
+                        NASA Headquarters<br>
+                        Washington, DC 20546<br>
+                        (202) 358-0000
+                    </p>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 National Aeronautics and Space Administration. All rights reserved.
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-space', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-space', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
         });
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
             });
+        });
+
+        // Create animated stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute rounded-full animate-pulse';
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size and brightness
+                const size = Math.random() * 2 + 1;
+                const opacity = Math.random() * 0.8 + 0.2;
+                const delay = Math.random() * 3;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.backgroundColor = 'white';
+                star.style.opacity = opacity;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
         }
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+        // Initialize stars on page load
+        window.addEventListener('load', createStars);
 
-        // Smooth scrolling for navigation links
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                
+                if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
                 }
             });
         });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe mission cards and other elements
+        document.querySelectorAll('.mission-card, .bg-white').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
     </script>
 </body>
-
 </html>
